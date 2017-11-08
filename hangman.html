@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Joey Gutzmann |hangman|</title>
+  <script src="hangman.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="index.css">
+  <script src="index.js"></script>
+  <style>
+      .main-contain{
+          padding:30px;
+      }#incorrect{
+  display:inline-block;
+}
+#primary{
+    width:320px;
+    margin:auto;
+}
+#rand1{
+  display:inline-block;
+}
+.form-control{
+  display:inline-block;
+}
+  </style>
+  </head>
+<body id="body">
+   <div class="nav">
+      <div class="container">
+        <ul class="pull-left">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="bio.html">Bio</a></li>
+          <li><a href="projects.html">Projects</a></li>
+        </ul>
+        <ul class="pull-right">
+          <li><select id="contact" onchange="contact();">
+            <option>Social Media</option>
+            <option value="1">Instagram</option>
+            <option value="2">Facebook</option>
+          </select></li>
+        </ul>
+      </div>
+    </div>
+    <div class="jumbotron">
+      <h1>Joseph Gutzmann</h1>
+      <p>This is my personal website where I demostrate my skills and learning of Javascript, HTML, CSS, and Bootsrap</p>
+    </div>
+    <div class="container main-contain">
+        <div id="primary">
+ <img id="board" src="" length="300px" width="300px">
+<p id="guessBoard"></p>
+  <p id="rand1">Incorrect: </p><p id="incorrect"></p><br><div class="input-group">
+  <input type="text" class="form-control" id="guessbar"><span class="input-group-btn"><button class="btn" onclick="attempt();">Enter</button></span></div>
+  <br><br>
+    <button onclick="guessWord();" class="btn">Guess Full Word</button>
+    <button onclick="reset();" class="btn">New Game</button>
+  </div>
+  </div>
+  
+  <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4">
+          <h3>Bio</h3>
+          <p>Learn about me and what I do here!</p>
+          <a href="bio.html">Continue >></a>
+        </div>
+        <div class="col-md-4">
+          <h3>Projects</h3>
+          <p>What do I learn here?</p>
+          <a href="projects.html">Continue >></a>
+          </div>
+        <div class="col-md-4">
+          <h3>Contact</h3>
+          <p>Do you have any suggestions? How Could I improve my work? Email me here!</p>
+          <a href="mailto:jgutz001@gmail.com">Email >></a>
+        </div>
+      </div>
+    </div>
+<script>
+var board=document.getElementById('board');
+var guess;
+var word, wordLength;
+var correct=0;
+var incorrect=0;
+var randNum=Math.floor(Math.random()*50);
+correctString="";
+
+function drawBoard(incorrect){
+  switch(incorrect){
+    case 0:
+      board.src="boards/board0.png";
+    break;
+      
+    case 1:
+      board.src="boards/board1.png";
+    break; 
+      
+    case 2:
+      board.src="boards/board2.png";
+    break;
+      
+    case 3:
+      board.src="boards/board3.png";
+    break;
+      
+    case 4:
+      board.src="boards/board4.png";
+    break;
+      
+    case 5:
+      board.src="boards/board5.png";
+    break;
+     
+    default:
+      board.src="boards/losingBanner.png";
+      document.getElementById('guessBoard').innerHTML="The word was: "+word;
+      document.getElementById('rand1').innerHTML="";
+      document.getElementById('incorrect').innerHTML=""; 
+    break;  
+  }
+}
+function drawGuess(){
+var guessB="";
+var potent2=0;
+for(var i=0;i<wordLength;i++){
+  for(var ii=0;ii<correctString.length;ii++){
+    if(word[i]===correctString[ii]){
+      guessB+=correctString[ii];
+      potent2++;
+      break;
+    }
+  }
+if(potent2===0){
+  if(guess===undefined){
+    guessB+="_";
+  }
+  else if(word[i]===" "){
+    guessB+=" ";
+  }
+  else if(word[i]===guess){
+    guessB+=guess;
+  }
+  else{
+    guessB+="_";
+  }
+  guessB+=" ";
+}
+  potent2=0;
+}
+document.getElementById('guessBoard').innerHTML=guessB;
+}
+function getWord(num1){
+      switch (num1){
+    
+    case 1:
+    word="destructive"; 
+    break;
+    
+    case 2:
+    word="locust";
+    break;
+    
+    case 3:
+    word="hotel";
+    break;
+    
+    case 4:
+    word="monarchy";
+    break;
+    
+    case 5:
+    word="flinch";
+    break;
+    
+    case 6:
+    word="cradle";
+    break;
+    
+    case 7:
+    word="breathless";
+    break;
+    
+    case 8:
+    word="orthodox";
+    break;
+    
+    case 9:
+    word="halfway";
+    break;
+    
+    case 10:
+    word="grade";
+    break;
+    
+    case 11:
+    word="pity";
+    break;
+    
+    case 12:
+    word="record";
+    break;
+    
+    case 13:
+    word="injury";
+    break;
+    
+    case 14:
+    word="massive";
+    break;
+    
+    case 15:
+    word="avenging";
+    break;
+    
+    case 16:
+    word="grinding";
+    break;
+    
+    case 17:
+    word="cunning";
+    break;
+    
+    case 18:
+    word="ear";
+    break;
+    
+    case 19:
+    word="farm";
+    break;
+    
+    case 20:
+    word="farm";
+    break;
+    
+    case 21:
+    word="seed";
+    break;
+    
+    case 22:
+    word="scheme";
+    break;
+    
+    case 23:
+    word="dynasty";
+    break;
+    
+    case 24:
+      word="camera";
+    break;
+    
+    case 25:
+    word="George Town";
+    break;
+    
+    case 26:
+    word="ambiguous";
+    break;
+    
+    case 27:
+    word="faction";
+    break;
+    
+    case 28:
+    word="regional";
+    break;
+    
+    case 29:
+    word="mystical";
+    break;
+    
+    case 30:
+    word="anonymous";
+    break;
+    
+    case 31:
+    word="amber";
+    break;
+    
+    case 32:
+    word="cargo";
+    break;
+    
+    case 33:
+    word="concussion";
+    break;
+    
+    case 34:
+    word="timid";
+    break;
+    
+    case 35:
+    word="burning";
+    break;
+    
+    case 36:
+    word="calling";
+    break;
+    
+    case 37:
+    word="episode";
+    break;
+    
+    case 38:
+    word="beastly";
+    break;
+    
+    case 39:
+    word="halloween";
+    break;
+     
+    case 40:
+    word="bounce";
+    break;
+     
+    case 41:
+    word="pull";
+    break;
+    
+    case 42:
+    word="grapes";
+    break;
+    
+    case 43:
+    word="juice";
+    break;
+    
+    case 44:
+    word="sweet";
+    break;
+    
+    case 45:
+    word="homewards";
+    break;
+    
+    case 46:
+    word="dormant";
+    break;
+    
+    case 47:
+    word="heavyheaded";
+    break;
+    
+    case 48:
+    word="kind";
+    break;
+    
+    case 49:
+    word="colt";
+    break;
+    
+    case 50:
+    word="firey";
+    break;
+  
+    default:
+    word="humble";
+    break;
+  }
+  wordLength=word.length;
+}
+
+function attempt(){
+ guess=document.getElementById('guessbar').value;
+  analyze();
+  drawBoard(incorrect);
+  document.getElementById('guessbar').value="";
+  console.log(correct);
+  if(correct>=wordLength){
+     board.src="boards/winningBanner.png";
+  }
+}
+
+function guessWord(){
+  var fullGuess=prompt("What is the full Word?");
+  for(var i=0;i<fullGuess.length;i++){
+    fullGuess[i]=fullGuess[i].toLowerCase();
+  }
+  if(fullGuess===word){
+    board.src="boards/winningBanner.png"
+    document.getElementById('guessBoard').innerHTML=word;
+    correct=6;
+  }
+  else{
+    board.src="boards/losingBanner.png"
+    board.src="boards/losingBanner.png";
+      document.getElementById('guessBoard').innerHTML="The word was: "+word;
+      document.getElementById('rand1').innerHTML="";
+      document.getElementById('incorrect').innerHTML=""; 
+      incorrect=6;
+  }
+}
+
+function analyze(){
+  var numIncor=document.getElementById('incorrect').textContent;
+  var potential=0;
+  guess=guess.toLowerCase();
+  if(guess===""){
+    return null;
+  }
+  for (var ii=0; ii<numIncor.length;ii++){
+     if(guess===numIncor[ii] || guess===numIncor[ii].toUpperCase()){
+      return null;
+    }
+  }
+  
+  for(var i=0;i<wordLength;i++){
+     if(guess===correctString[i]){
+       return null;
+     }
+  else if(word[i]===guess){
+    correct++;
+    correctString+=guess.toLowerCase();
+    drawGuess();
+  }
+    else{
+      potential++;
+    }
+  }
+  if(potential===wordLength){
+    incorrect++;
+    document.getElementById('incorrect').innerHTML+=guess;
+  }
+}
+
+function reset(){
+  randNum=Math.floor(Math.random()*50);
+  guess="";
+  correct=0;
+  incorrect=0;
+  correctString="";
+  document.getElementById('rand1').innerHTML="Incorrect: ";
+  document.getElementById('incorrect').innerHTML="";
+  drawBoard(0);
+  getWord(randNum);
+drawGuess();
+}
+
+drawBoard(0);
+  getWord(randNum);
+drawGuess();
+console.log(word, wordLength);
+</script>
+</body>
+</html>
