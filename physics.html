@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Joey Gutzmann |physics|</title>
+    <link href="index.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="shortcut icon" href="logo.png">
+  </head>
+  <body id="body">
+    <div class="nav">
+      <div class="container">
+        <ul class="pull-left">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="bio.html">Bio</a></li>
+          <li><a href="projects.html">Projects</a></li>
+        </ul>
+        <ul class="pull-right">
+          <li><select id="contact" onchange="contact();">
+            <option>Social Media</option>
+            <option value="1">Instagram</option>
+            <option value="2">Facebook</option>
+          </select></li>
+        </ul>
+      </div>
+    </div>
+    <div class="jumbotron">
+      <h1>Joseph Gutzmann</h1>
+      <p>This is my personal website where I demostrate my skills and learning of Javascript, HTML, CSS, and Bootsrap</p>
+    </div>
+    
+    <div class="container" id="equate-contain">
+      <select onchange="change();" id="val">
+        <option>Choose your equation...</option>
+        <option value='1'>D=Rt</option>
+        <option value='2'>a=Δv/t</option>
+        <option value='3'>xi=xf+Vit+&frac12;(a)(t)^2</option>
+        <option value='4'>vf^2=vi^2+2a(Δx)</option>
+      </select>
+      <button class="box" id="calc" onclick="solve();">Calculate</button>
+      <p id="var1"></p><input class="box" id="in1">
+      <p id="var2"></p><input class="box" id='in2'>
+      <p id='var3'></p><input class="box" id='in3'>
+      <p id='var4'></p><input class="box" id='in4'>
+      <p id='var5'></p><input class="box" id='in5'>
+    </div>
+    
+      <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4">
+          <h3>Bio</h3>
+          <p>Learn about me and what I do here!</p>
+          <a href="bio.html">Continue >></a>
+        </div>
+        <div class="col-md-4">
+          <h3>Projects</h3>
+          <p>What do I learn here?</p>
+          <a href="projects.html">Continue >></a>
+          </div>
+        <div class="col-md-4">
+          <h3>Contact</h3>
+          <p>Do you have any suggestions? How Could I improve my work? Email me here!</p>
+          <a href="mailto:jgutz001@gmail.com">Email >></a>
+        </div>
+      </div>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
